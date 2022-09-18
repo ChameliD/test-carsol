@@ -3,8 +3,9 @@ import './carsol.css'
 
 
 const Carsol = () => {
-    const number=0
+    let number=0
     const [tableData, setTableData] = useState([])
+    
 
     useEffect(() => {
         getAllData();
@@ -29,18 +30,27 @@ const Carsol = () => {
     }
 
     const leftSlid=()=>{
-        console.log("lefr")
+        if (number<=4 && number>0){
+            number++
+        }
+        
+        
     }
 
     const rightSlid=()=>{
-        console.log("right")
+        if (number<=4 && number>0){
+            number--
+        }
     }
+
     
   return (
   <div>
     <i className ="arrow left" onClick={()=>leftSlid()}></i>
 
      <img src={allURL[number]} alt="new"/>
+     <p>{allTitles[number]}</p>
+     <p>{allSubTitles[number]}</p>
 
      <i className="arrow right" onClick={()=>rightSlid()}></i>
 </div>
