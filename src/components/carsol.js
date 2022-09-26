@@ -3,7 +3,7 @@ import './carsol.css'
 
 
 const Carsol = () => {
-    let number=0
+    const [number,setCounter]=useState(0)
     const [tableData, setTableData] = useState([])
     
 
@@ -22,25 +22,38 @@ const Carsol = () => {
     const allURL = tableData.map(urlArray => urlArray.url);
     const allTitles = tableData.map(titllesArray => titllesArray.title);
     const allSubTitles = tableData.map(subTitlesArray => subTitlesArray.subTitle);
-   /* */
-   const url1=allURL[2]
+   
+    const noOfUrl=allURL.length
   
-   const getAllData=()=>{
+    const getAllData=()=>{
         getData();
     }
 
-    const leftSlid=()=>{
-        if (number<=4 && number>0){
-            number++
+    const getArrowStatus=(currunt)=>{
+        if(currunt<noOfUrl && currunt>0){
+            return true
         }
-        
+        else{
+            
+            return false
+        }
+    }
+
+    const leftSlid=()=>{
+        console.log(noOfUrl)
+        if(getArrowStatus){
+            setCounter(number+1)   
+        }
+        console.log("boundary exceed")
         
     }
 
     const rightSlid=()=>{
-        if (number<=4 && number>0){
-            number--
+        console.log(noOfUrl)
+        if(getArrowStatus){
+            setCounter(number-1)   
         }
+        console.log("boundary exceed")   
     }
 
     
