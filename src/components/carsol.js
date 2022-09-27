@@ -78,8 +78,8 @@ const Carsol = () => {
         arrowStatusL?<i className ="arrow left" onClick={()=>leftSlid()}></i>:null
     }
      
-     <p>{allTitles[number]}</p>
-     <p>{allSubTitles[number]}</p>
+     {allTitles[number]}
+     {allSubTitles[number]}
      {
         arrowStatusR?<i className="arrow right" onClick={()=>rightSlid()}></i>:null
      }    
