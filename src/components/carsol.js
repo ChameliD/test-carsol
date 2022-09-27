@@ -5,7 +5,8 @@ import './carsol.css'
 const Carsol = () => {
     const [number,setCounter]=useState(0)
     const [tableData, setTableData] = useState([])
-    
+    const [arrowStatusL, setArrowStatusL] = useState(true)
+    const [arrowStatusR, setArrowStatusR] = useState(true)
 
     useEffect(() => {
         getAllData();
@@ -29,44 +30,60 @@ const Carsol = () => {
         getData();
     }
 
+    
     const getArrowStatus=(currunt)=>{
         if(currunt<noOfUrl && currunt>0){
             return true
         }
         else{
-            
+           
             return false
         }
     }
 
     const leftSlid=()=>{
-        console.log(noOfUrl)
-        if(getArrowStatus){
-            setCounter(number+1)   
-        }
-        console.log("boundary exceed")
+
+        setArrowStatusL(true)
+        setArrowStatusR(true)
         
+        if(getArrowStatus){
+            if(number===noOfUrl-2) {
+                setArrowStatusL(false)
+            }
+            setCounter(number+1)    
+            return true 
+        }
+        return false    
     }
 
     const rightSlid=()=>{
-        console.log(noOfUrl)
+        
+        setArrowStatusL(true)
+        setArrowStatusR(true)
+        
         if(getArrowStatus){
+            if(number===noOfUrl-2) {
+                setArrowStatusR(false)
+            }
             setCounter(number-1)   
+            return true 
         }
-        console.log("boundary exceed")   
+        return false  
     }
 
     
   return (
-  <div>
-    <i className ="arrow left" onClick={()=>leftSlid()}></i>
-
-     <img src={allURL[number]} alt="new"/>
+  <div style={{backgroundImage:`url(${allURL[number]})`}}>
+    {
+        arrowStatusL?<i className ="arrow left" onClick={()=>leftSlid()}></i>:null
+    }
+     
      <p>{allTitles[number]}</p>
      <p>{allSubTitles[number]}</p>
-
-     <i className="arrow right" onClick={()=>rightSlid()}></i>
-</div>
+     {
+        arrowStatusR?<i className="arrow right" onClick={()=>rightSlid()}></i>:null
+     }    
+    </div>
   )
 }
 
